@@ -6,7 +6,7 @@
 * [下载](http-tls-port-rs_linux_amd64)
 
 ```
-./http-tls-port-rs_linux_amd64 -c /etc/httptls/jazpan.yml
+./http-tls-port-rs_linux_amd64 -c /etc/httptls/example.yml
 ```
 
 ## 网页中使用
