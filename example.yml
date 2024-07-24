@@ -1,0 +1,36 @@
+# v1.1.0
+
+log:
+  path: tmps/httptlsport.log
+  size_mb: 10
+  split_num: 3
+
+server:
+  # reload_cert_sec: 0 # 如果证书变化就重新加载(默认30,0表示禁用该功能), 单位：秒
+  # bind: :8443 #默认bind端口
+  # binds: # 更多bind端口
+  # - :8080
+  certfl: doc/fullchain.pem
+  keyfl: doc/privkey.pem
+
+  http:
+    # forcehttps: true # http 强制跳转 https
+    proxys: localhost:3080 # 默认代理服务 (如果为空，又未匹配到webs,就会直接关闭请求连接)
+    webs: # 如果存在该选项，certfl 中的证书必须包含以下域名
+      - host:
+          - test1.example.com
+          - test2.example.com
+        # method: POST
+        # path: /abc/ # 以 '/abc/' 开头的路径
+        forcehttps: true
+        proxys: localhost:3081
+#        proxy_lmt: # web的限制
+#          up: 100  # kB/s
+#          down: 100  # kB/s
+#    proxy_lmt: #全局限制 (web优先)
+#      up: 100  # kB/s
+#      down: 100  # kB/s
+#    http_lmt: #http 报文限制
+#      max_headline_len: 100    # header最大数量
+#      max_headline_size: 8192  # header每行最大字节
+#      max_head_size: 32768     # header总最大字节
